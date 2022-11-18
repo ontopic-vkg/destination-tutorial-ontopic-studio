@@ -1,0 +1,162 @@
+{
+	"relations": [
+		{
+			"name": [
+				"\"lenses\"",
+				"\"source2\"",
+				"\"accommodation\""
+			],
+			"otherNames": null,
+			"baseRelation": [
+				"\"source2\"",
+				"\"accommodation\""
+			],
+			"filterExpression": null,
+			"columns": {
+				"added": [],
+				"hidden": []
+			},
+			"uniqueConstraints": null,
+			"otherFunctionalDependencies": null,
+			"foreignKeys": null,
+			"nonNullConstraints": null,
+			"type": "BasicViewDefinition"
+		},
+		{
+			"name": [
+				"\"lenses\"",
+				"\"source2\"",
+				"\"hotels\""
+			],
+			"otherNames": null,
+			"baseRelation": [
+				"\"source2\"",
+				"\"hotels\""
+			],
+			"filterExpression": null,
+			"columns": {
+				"added": [
+					{
+						"name": "\"wkt\"",
+						"expression": "ST_ASTEXT(\"geom\")"
+					}
+				],
+				"hidden": []
+			},
+			"uniqueConstraints": null,
+			"otherFunctionalDependencies": null,
+			"foreignKeys": null,
+			"nonNullConstraints": null,
+			"type": "BasicViewDefinition"
+		},
+		{
+			"name": [
+				"\"lenses\"",
+				"\"source1\"",
+				"\"rooms\""
+			],
+			"otherNames": null,
+			"baseRelation": [
+				"\"source1\"",
+				"\"rooms\""
+			],
+			"filterExpression": null,
+			"columns": {
+				"added": [],
+				"hidden": []
+			},
+			"uniqueConstraints": null,
+			"otherFunctionalDependencies": null,
+			"foreignKeys": null,
+			"nonNullConstraints": null,
+			"type": "BasicViewDefinition"
+		},
+		{
+			"name": [
+				"\"lenses\"",
+				"\"source1\"",
+				"\"hospitality\""
+			],
+			"otherNames": null,
+			"baseRelation": [
+				"\"source1\"",
+				"\"hospitality\""
+			],
+			"filterExpression": null,
+			"columns": {
+				"added": [
+					{
+						"name": "\"wkt\"",
+						"expression": "ST_ASTEXT(\"geometrypoint\")"
+					}
+				],
+				"hidden": []
+			},
+			"uniqueConstraints": null,
+			"otherFunctionalDependencies": null,
+			"foreignKeys": null,
+			"nonNullConstraints": null,
+			"type": "BasicViewDefinition"
+		},
+		{
+			"name": [
+				"\"lenses\"",
+				"\"source1\"",
+				"\"municipalities\""
+			],
+			"otherNames": null,
+			"baseRelation": [
+				"\"source1\"",
+				"\"municipalities\""
+			],
+			"filterExpression": null,
+			"columns": {
+				"added": [
+					{
+						"name": "\"wkt\"",
+						"expression": "ST_ASTEXT(\"geometrypoint\")"
+					}
+				],
+				"hidden": []
+			},
+			"uniqueConstraints": null,
+			"otherFunctionalDependencies": null,
+			"foreignKeys": null,
+			"nonNullConstraints": null,
+			"type": "BasicViewDefinition"
+		},
+		{
+			"name": [
+				"\"lenses\"",
+				"\"join_source1_hospitality_source1_municipalities\""
+			],
+			"otherNames": null,
+			"join": {
+				"relations": [
+					[
+						"\"source1\"",
+						"\"hospitality\""
+					],
+					[
+						"\"source1\"",
+						"\"municipalities\""
+					]
+				],
+				"columnPrefixes": [
+					"p1_",
+					"p2_"
+				]
+			},
+			"filterExpression": "\"p1_m_id\" = \"p2_m_id\"",
+			"columns": {
+				"added": [],
+				"hidden": []
+			},
+			"uniqueConstraints": null,
+			"otherFunctionalDependencies": null,
+			"foreignKeys": null,
+			"nonNullConstraints": null,
+			"type": "JoinViewDefinition"
+		}
+	]
+}
