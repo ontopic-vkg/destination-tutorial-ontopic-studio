@@ -22,7 +22,7 @@
  3. Import the file `geosparql.owl` in the `ontologies` directory
 
 
-## Lodging businesses (source 1)
+## Lodging businesses in source 1
 
 ### Lens
 
@@ -71,3 +71,94 @@
  21. Let's now fill the first line of the dictionary. On the left field, insert the string `Camping` as found in the `h_type` column of the lens. In the right field, select the class `schema:Campground`. Everytime the value `Camping` is found in the column `h_type`, the lodging business will be declared instance of the class `schema:Campground`.
  22. Click on `+` for adding a new line. Map this time the value `HotelPension` to the class `schema:Hotel`.
  23. Map the value `BedBreakfast` to `schema:BedAndBreakfast`. Save the mapping entry.
+
+
+We have produced enough mapping entries for this lens for the moment. We leave the rest as a homework exercise. Please refer to the VKG diagram to see which properties are missing.
+
+### Snapshot and mapping export
+
+ 1. Go on the `Dashboard` page and click on `Snapshot`. Technically speaking, it will create a Git commit with all the important files of the project.
+ 2. Open the `Repository` page to see the following snapshotted/committed files:
+     - `lenses.json`: definition of the lenses in the Ontop format.
+     - `mapping.ttl`: R2RML mapping file defined over the lenses.
+     - `ontology.ttl`: RDFS/OWL2QL ontology serialized in Turtle.
+     - `YOUR_PROJECT.ontopicprj`: internal representation of your project. Can be imported in Ontopic Studio to override the mapping, lenses and the ontology.
+ 3. Go back to the Ontopic Studio tab. Go the `Mapping page`. Click on `Export mapping` and then on `Without lenses` to download the mapping in R2RML that directly refers to tables in the source instead of the lenses. This file is interoperable with any R2RML processor.
+
+### Test
+
+Let's test our mapping by deploying Ontop directly in Ontopic Studio and issue our first SPARQL query.
+
+ 1. Go to the `Query` page. Click on `Start` at the top right.
+ 2. Execute the following SPARQL query:
+ ```sparql
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX schema: <http://schema.org/>
+
+SELECT * WHERE {
+ ?h a schema:Campground ; schema:name ?name .
+  FILTER (lang(?name) = 'en')
+  
+  OPTIONAL {
+    ?h geo:defaultGeometry / geo:asWKT ?geometry .
+  }
+} 
+ ```
+3. Click on `View SQL` to see the generated SQL query.
+
+
+## Lodging businesses in source 2
+
+1. Go to the `Lenses` page and create a mirror lens for the table `source2.hotels`. Open the newly created lens.
+2. We can see it has similar kind of information but with a different column names and special values. Let's keep the lens as it is for the moment and start mapping it. For that, click at bottom right on `0 mapping entries` to reach the mapping editing page for this lens.
+3. Create a class mapping entry with a new IRI template to map all the rows of the lens to the class `schema:LodgingBusiness`.
+4. Map the name in English of the lodging businesses.
+5. Map the following values of the column `htype`:
+    - 1 to `schema:BedAndBreakfast`
+    - 2 to `schema:Hotel`
+    - 4 to `schema:Campground`.
+6. Snapshot the changes.
+7. Go to the `Query` page and update the SPARQL endpoint.
+8. Run the previous SPARQL and observe that it now returns more results. If you look at SQL query, you will see that is now contains a UNION.
+
+
+## Municipalities
+
+ 1. Create a mirror lens from the table `source1.municipalities`. Open the newly created lens.
+ 2. Click on `Constraints` and observe that this lens contains 2 unique constraints: one on `m_id`, one on `istat`. The first column is an internal identifier that is specific to `source1`. The second column is the official code of the municipality assigned by the Italian Institute of Statistics (Istat).
+ 3. Go to the page about the lens `lenses.source1.hospitality` and notice it has a column `m_id` referring to the internal code of the municipality.
+ 4. Go to the page about the lens `lenses.source2.hotels` and observe it has a column `mun` referring to the Istat code.
+ 5. As we would to use the same municipality identifiers for the lodging businesses from the 2 sources, let's use the Istat code for in the IRI template of municipalities and not the internal one.
+ 6. Go to the mapping page of the lens `lenses.source1.municipalities`. Click on `C+` for creating a class mapping entry.
+ 7. Click on `Create IRI template`. By default Ontopic Studio generates a template using the first unique constraint (`m_id`). Replace the binding value `m_id` by `istat`. Create the template.
+ 8. schema.org does have the class for municipalities so let's create one. In the class drop-down menu, click on `Create new class`. Insert `Municipality` as class name and select `schema:AdministrativeArea`. Click on `Create`. Save the mapping entry.
+ 9. Map the English name of the municipality.
+ 10. Snapshot the changes.
+
+
+## Linking lodging businesses to municipalities
+
+### Source 1
+
+### Source 2
+
+### Query
+ 1. Update the prefixes
+ 2. Update the SPARQL endpoint and run the following query:
+  ```sparql
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX schema: <http://schema.org/>
+PREFIX voc: <http://tutorial.example.org/voc#>
+
+SELECT * WHERE {
+  ?h a schema:Campground ; schema:name ?name ; schema:containedInPlace ?municipality .
+  
+  ?municipality a voc:Municipality ; schema:name ?municipalityName .
+
+  FILTER (lang(?name) = 'en' && lang(?municipalityName) = 'en')
+  
+  OPTIONAL {
+    ?h geo:defaultGeometry / geo:asWKT ?geometry .
+  }
+} 
+ ```
