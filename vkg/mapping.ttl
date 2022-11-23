@@ -1,378 +1,24 @@
 @prefix schema: <http://schema.org/> .
 @prefix void:  <http://rdfs.org/ns/void#> .
-@prefix obda:  <https://w3id.org/obda/vocabulary#> .
-@prefix data:  <http://destination.example.org/data/> .
+@prefix data:  <http://mydata.example.org/> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
-@prefix gml:   <http://www.opengis.net/ont/gml#> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix voc:   <http://destination.example.org/ontology/dest#> .
+@prefix voc:   <http://tutorial.example.org/voc#> .
 @prefix ns1:   <http://www.w3.org/2004/02/skos/core#> .
-@prefix ssn:   <http://www.w3.org/ns/ssn/> .
 @prefix geo:   <http://www.opengis.net/ont/geosparql#> .
-@prefix cdt:   <http://w3id.org/lindt/custom_datatypes#> .
-@prefix sf:    <http://www.opengis.net/ont/sf#> .
 @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix terms: <http://purl.org/dc/terms/> .
 @prefix bibo:  <http://purl.org/ontology/bibo/> .
 @prefix dcat:  <http://www.w3.org/ns/dcat#> .
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
-@prefix sosa:  <http://www.w3.org/ns/sosa/> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+@prefix base:  <https://schema.org/version/latest/schemaorg-current-http.rdf#> .
 
 [ <http://www.w3.org/ns/r2rml#logicalTable>
           [ <http://www.w3.org/ns/r2rml#sqlQuery>
-                    "SELECT * FROM \"lenses\".\"source2\".\"hotels\" WHERE \"htype\" = 4" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:Campground ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              rdf:type ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/hotels/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"hospitality\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"telephone\"" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:telephone ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/hospitality/{\"h_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#sqlQuery>
-                    "SELECT * FROM \"lenses\".\"source1\".\"hospitality\" WHERE \"h_type\" = 'BedBreakfast'" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:BedAndBreakfast ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              rdf:type ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/hospitality/{\"h_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"municipalities\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"name_en\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              rdf:langString ;
-                      <http://www.w3.org/ns/r2rml#language>
-                              "en" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:name ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/municipality/{\"istat\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"rooms\"" ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#class>
-                    schema:QuantitativeValue ;
-            <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/occupancy/rooms/{\"r_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"municipalities\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#template>
-                              "http://destination.example.org/data/geo/municipality/{\"istat\"}" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#IRI>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:geo ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/municipality/{\"istat\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"hospitality\"" ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#class>
-                    schema:GeoCoordinates ;
-            <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/geo/hospitality/{\"h_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"rooms\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#template>
-                              "http://destination.example.org/data/source1/hospitality/{\"h_id\"}" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#IRI>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:containedInPlace ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/rooms/{\"r_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#sqlQuery>
-                    "SELECT * FROM \"lenses\".\"source1\".\"hospitality\" WHERE \"h_type\" = 'Camping'" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:Campground ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              rdf:type ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/hospitality/{\"h_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"municipalities\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"name_it\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              rdf:langString ;
-                      <http://www.w3.org/ns/r2rml#language>
-                              "it" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:name ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/municipality/{\"istat\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"hotels\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#template>
-                              "http://destination.example.org/data/source2/geo/hotels/{\"id\"}" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#IRI>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:geo ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/hotels/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"hotels\"" ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#class>
-                    schema:GeoCoordinates ;
-            <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/geo/hotels/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#sqlQuery>
-                    "SELECT * FROM \"lenses\".\"source2\".\"accommodation\" WHERE \"acco_type\" = 2" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:Apartment ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              rdf:type ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/accommodation/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"rooms\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"capacity\"" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:maxValue ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/occupancy/rooms/{\"r_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"accommodation\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"german_title\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              rdf:langString ;
-                      <http://www.w3.org/ns/r2rml#language>
-                              "de" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:name ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/accommodation/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"hospitality\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"name_it\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              rdf:langString ;
-                      <http://www.w3.org/ns/r2rml#language>
-                              "it" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:name ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/hospitality/{\"h_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"hotels\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#template>
-                              "http://destination.example.org/data/municipality/0{\"mun\"}" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#IRI>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:containedInPlace ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/hotels/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#sqlQuery>
-                    "SELECT * FROM \"lenses\".\"source1\".\"hospitality\" WHERE \"h_type\" = 'HotelPension'" ] ;
+                    "SELECT * FROM \"lenses\".\"source2\".\"hotels\" WHERE \"htype\" = 2" ] ;
   <http://www.w3.org/ns/r2rml#predicateObjectMap>
           [ <http://www.w3.org/ns/r2rml#objectMap>
                     [ <http://www.w3.org/ns/r2rml#constant>
@@ -383,7 +29,7 @@
           ] ;
   <http://www.w3.org/ns/r2rml#subjectMap>
           [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/hospitality/{\"h_id\"}" ;
+                    "http://mydata.example.org/source2-hotels/{\"id\"}" ;
             <http://www.w3.org/ns/r2rml#termType>
                     <http://www.w3.org/ns/r2rml#IRI>
           ]
@@ -392,145 +38,10 @@
 [ <http://www.w3.org/ns/r2rml#logicalTable>
           [ <http://www.w3.org/ns/r2rml#tableName>
                     "\"lenses\".\"source1\".\"municipalities\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"longitude\"" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:longitude ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/geo/municipality/{\"istat\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"accommodation\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#template>
-                              "http://destination.example.org/data/source2/occupancy/accommodation/{\"id\"}" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#IRI>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:occupancy ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/accommodation/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"rooms\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              "C62" ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:unitCode ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/occupancy/rooms/{\"r_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"accommodation\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"italian_title\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              rdf:langString ;
-                      <http://www.w3.org/ns/r2rml#language>
-                              "it" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:name ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/accommodation/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"rooms\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"room_units\"" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              voc:numberOfUnits ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/rooms/{\"r_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"municipalities\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"latitude\"" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:latitude ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/geo/municipality/{\"istat\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"hospitality\"" ] ;
   <http://www.w3.org/ns/r2rml#predicateObjectMap>
           [ <http://www.w3.org/ns/r2rml#objectMap>
                     [ <http://www.w3.org/ns/r2rml#column>
                               "\"name_en\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              rdf:langString ;
                       <http://www.w3.org/ns/r2rml#language>
                               "en" ;
                       <http://www.w3.org/ns/r2rml#termType>
@@ -542,7 +53,7 @@
           ] ;
   <http://www.w3.org/ns/r2rml#subjectMap>
           [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/hospitality/{\"h_id\"}" ;
+                    "http://mydata.example.org/source1-municipalities/{\"istat\"}" ;
             <http://www.w3.org/ns/r2rml#termType>
                     <http://www.w3.org/ns/r2rml#IRI>
           ]
@@ -551,130 +62,11 @@
 [ <http://www.w3.org/ns/r2rml#logicalTable>
           [ <http://www.w3.org/ns/r2rml#tableName>
                     "\"lenses\".\"source1\".\"hospitality\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#template>
-                              "http://destination.example.org/data/source1/geo/hospitality/{\"h_id\"}" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#IRI>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              geo:defaultGeometry ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/hospitality/{\"h_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#sqlQuery>
-                    "SELECT * FROM \"lenses\".\"source1\".\"rooms\" WHERE \"r_type\" = 'apartment'" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:Apartment ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              rdf:type ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/rooms/{\"r_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"rooms\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"description_de\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              rdf:langString ;
-                      <http://www.w3.org/ns/r2rml#language>
-                              "de" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:description ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/rooms/{\"r_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"accommodation\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"german_description\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              rdf:langString ;
-                      <http://www.w3.org/ns/r2rml#language>
-                              "de" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:description ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/accommodation/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"accommodation\"" ] ;
   <http://www.w3.org/ns/r2rml#subjectMap>
           [ <http://www.w3.org/ns/r2rml#class>
-                    schema:QuantitativeValue ;
+                    schema:LodgingBusiness ;
             <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/occupancy/accommodation/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"hospitality\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"name_de\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              rdf:langString ;
-                      <http://www.w3.org/ns/r2rml#language>
-                              "de" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:name ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/hospitality/{\"h_id\"}" ;
+                    "http://mydata.example.org/source1-hospitality/{\"h_id\"}" ;
             <http://www.w3.org/ns/r2rml#termType>
                     <http://www.w3.org/ns/r2rml#IRI>
           ]
@@ -687,8 +79,6 @@
           [ <http://www.w3.org/ns/r2rml#objectMap>
                     [ <http://www.w3.org/ns/r2rml#column>
                               "\"english\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              rdf:langString ;
                       <http://www.w3.org/ns/r2rml#language>
                               "en" ;
                       <http://www.w3.org/ns/r2rml#termType>
@@ -700,122 +90,7 @@
           ] ;
   <http://www.w3.org/ns/r2rml#subjectMap>
           [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/hotels/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"municipalities\"" ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#class>
-                    schema:GeoCoordinates ;
-            <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/geo/municipality/{\"istat\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#sqlQuery>
-                    "SELECT * FROM \"lenses\".\"source2\".\"accommodation\" WHERE \"acco_type\" = 1" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:Room ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              rdf:type ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/accommodation/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"rooms\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#template>
-                              "http://destination.example.org/data/source1/occupancy/rooms/{\"r_id\"}" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#IRI>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:occupancy ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/rooms/{\"r_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"hotels\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#template>
-                              "http://destination.example.org/data/source2/geo/hotels/{\"id\"}" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#IRI>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              geo:defaultGeometry ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/hotels/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"accommodation\"" ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#class>
-                    schema:Accommodation ;
-            <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/accommodation/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"hotels\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"german\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              rdf:langString ;
-                      <http://www.w3.org/ns/r2rml#language>
-                              "de" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:name ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/hotels/{\"id\"}" ;
+                    "http://mydata.example.org/source2-hotels/{\"id\"}" ;
             <http://www.w3.org/ns/r2rml#termType>
                     <http://www.w3.org/ns/r2rml#IRI>
           ]
@@ -827,7 +102,7 @@
   <http://www.w3.org/ns/r2rml#predicateObjectMap>
           [ <http://www.w3.org/ns/r2rml#objectMap>
                     [ <http://www.w3.org/ns/r2rml#column>
-                              "\"wkt\"" ;
+                              "\"geometrypoint\"" ;
                       <http://www.w3.org/ns/r2rml#datatype>
                               geo:wktLiteral ;
                       <http://www.w3.org/ns/r2rml#termType>
@@ -839,148 +114,7 @@
           ] ;
   <http://www.w3.org/ns/r2rml#subjectMap>
           [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/geo/hospitality/{\"h_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"municipalities\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"name_de\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              rdf:langString ;
-                      <http://www.w3.org/ns/r2rml#language>
-                              "de" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:name ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/municipality/{\"istat\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"hospitality\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"altitude\"" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:elevation ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/geo/hospitality/{\"h_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#sqlQuery>
-                    "SELECT * FROM \"lenses\".\"source2\".\"accommodation\" WHERE \"acco_type\" = 3" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:CampingPitch ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              rdf:type ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/accommodation/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"hospitality\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"longitude\"" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:longitude ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/geo/hospitality/{\"h_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"rooms\"" ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#class>
-                    schema:Accommodation ;
-            <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/rooms/{\"r_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"accommodation\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"english_title\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              rdf:langString ;
-                      <http://www.w3.org/ns/r2rml#language>
-                              "en" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:name ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/accommodation/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"hotels\"" ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#class>
-                    schema:LodgingBusiness ;
-            <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/hotels/{\"id\"}" ;
+                    "http://mydata.example.org/geo/source1-hospitality/{\"h_id\"}" ;
             <http://www.w3.org/ns/r2rml#termType>
                     <http://www.w3.org/ns/r2rml#IRI>
           ]
@@ -999,7 +133,154 @@
           ] ;
   <http://www.w3.org/ns/r2rml#subjectMap>
           [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/hotels/{\"id\"}" ;
+                    "http://mydata.example.org/source2-hotels/{\"id\"}" ;
+            <http://www.w3.org/ns/r2rml#termType>
+                    <http://www.w3.org/ns/r2rml#IRI>
+          ]
+] .
+
+[ <http://www.w3.org/ns/r2rml#logicalTable>
+          [ <http://www.w3.org/ns/r2rml#tableName>
+                    "\"lenses\".\"source1\".\"hospitality\"" ] ;
+  <http://www.w3.org/ns/r2rml#predicateObjectMap>
+          [ <http://www.w3.org/ns/r2rml#objectMap>
+                    [ <http://www.w3.org/ns/r2rml#template>
+                              "http://mydata.example.org/geo/source1-hospitality/{\"h_id\"}" ;
+                      <http://www.w3.org/ns/r2rml#termType>
+                              <http://www.w3.org/ns/r2rml#IRI>
+                    ] ;
+            <http://www.w3.org/ns/r2rml#predicateMap>
+                    [ <http://www.w3.org/ns/r2rml#constant>
+                              geo:defaultGeometry ]
+          ] ;
+  <http://www.w3.org/ns/r2rml#subjectMap>
+          [ <http://www.w3.org/ns/r2rml#template>
+                    "http://mydata.example.org/source1-hospitality/{\"h_id\"}" ;
+            <http://www.w3.org/ns/r2rml#termType>
+                    <http://www.w3.org/ns/r2rml#IRI>
+          ]
+] .
+
+[ <http://www.w3.org/ns/r2rml#logicalTable>
+          [ <http://www.w3.org/ns/r2rml#sqlQuery>
+                    "SELECT * FROM \"lenses\".\"source1\".\"hospitality\" WHERE \"h_type\" = 'Camping'" ] ;
+  <http://www.w3.org/ns/r2rml#predicateObjectMap>
+          [ <http://www.w3.org/ns/r2rml#objectMap>
+                    [ <http://www.w3.org/ns/r2rml#constant>
+                              schema:Campground ] ;
+            <http://www.w3.org/ns/r2rml#predicateMap>
+                    [ <http://www.w3.org/ns/r2rml#constant>
+                              rdf:type ]
+          ] ;
+  <http://www.w3.org/ns/r2rml#subjectMap>
+          [ <http://www.w3.org/ns/r2rml#template>
+                    "http://mydata.example.org/source1-hospitality/{\"h_id\"}" ;
+            <http://www.w3.org/ns/r2rml#termType>
+                    <http://www.w3.org/ns/r2rml#IRI>
+          ]
+] .
+
+[ <http://www.w3.org/ns/r2rml#logicalTable>
+          [ <http://www.w3.org/ns/r2rml#tableName>
+                    "\"lenses\".\"source1\".\"hospitality\"" ] ;
+  <http://www.w3.org/ns/r2rml#predicateObjectMap>
+          [ <http://www.w3.org/ns/r2rml#objectMap>
+                    [ <http://www.w3.org/ns/r2rml#column>
+                              "\"name_en\"" ;
+                      <http://www.w3.org/ns/r2rml#language>
+                              "en" ;
+                      <http://www.w3.org/ns/r2rml#termType>
+                              <http://www.w3.org/ns/r2rml#Literal>
+                    ] ;
+            <http://www.w3.org/ns/r2rml#predicateMap>
+                    [ <http://www.w3.org/ns/r2rml#constant>
+                              schema:name ]
+          ] ;
+  <http://www.w3.org/ns/r2rml#subjectMap>
+          [ <http://www.w3.org/ns/r2rml#template>
+                    "http://mydata.example.org/source1-hospitality/{\"h_id\"}" ;
+            <http://www.w3.org/ns/r2rml#termType>
+                    <http://www.w3.org/ns/r2rml#IRI>
+          ]
+] .
+
+[ <http://www.w3.org/ns/r2rml#logicalTable>
+          [ <http://www.w3.org/ns/r2rml#sqlQuery>
+                    "SELECT * FROM \"lenses\".\"source1\".\"hospitality\" WHERE \"h_type\" = 'BedBreakfast'" ] ;
+  <http://www.w3.org/ns/r2rml#predicateObjectMap>
+          [ <http://www.w3.org/ns/r2rml#objectMap>
+                    [ <http://www.w3.org/ns/r2rml#constant>
+                              schema:BedAndBreakfast ] ;
+            <http://www.w3.org/ns/r2rml#predicateMap>
+                    [ <http://www.w3.org/ns/r2rml#constant>
+                              rdf:type ]
+          ] ;
+  <http://www.w3.org/ns/r2rml#subjectMap>
+          [ <http://www.w3.org/ns/r2rml#template>
+                    "http://mydata.example.org/source1-hospitality/{\"h_id\"}" ;
+            <http://www.w3.org/ns/r2rml#termType>
+                    <http://www.w3.org/ns/r2rml#IRI>
+          ]
+] .
+
+[ <http://www.w3.org/ns/r2rml#logicalTable>
+          [ <http://www.w3.org/ns/r2rml#sqlQuery>
+                    "SELECT * FROM \"lenses\".\"source1\".\"hospitality\" WHERE \"h_type\" = 'HotelPension'" ] ;
+  <http://www.w3.org/ns/r2rml#predicateObjectMap>
+          [ <http://www.w3.org/ns/r2rml#objectMap>
+                    [ <http://www.w3.org/ns/r2rml#constant>
+                              schema:Hotel ] ;
+            <http://www.w3.org/ns/r2rml#predicateMap>
+                    [ <http://www.w3.org/ns/r2rml#constant>
+                              rdf:type ]
+          ] ;
+  <http://www.w3.org/ns/r2rml#subjectMap>
+          [ <http://www.w3.org/ns/r2rml#template>
+                    "http://mydata.example.org/source1-hospitality/{\"h_id\"}" ;
+            <http://www.w3.org/ns/r2rml#termType>
+                    <http://www.w3.org/ns/r2rml#IRI>
+          ]
+] .
+
+[ <http://www.w3.org/ns/r2rml#logicalTable>
+          [ <http://www.w3.org/ns/r2rml#tableName>
+                    "\"lenses\".\"source1\".\"hospitality-municipalities-join\"" ] ;
+  <http://www.w3.org/ns/r2rml#predicateObjectMap>
+          [ <http://www.w3.org/ns/r2rml#objectMap>
+                    [ <http://www.w3.org/ns/r2rml#template>
+                              "http://mydata.example.org/source1-municipalities/{\"m_istat\"}" ;
+                      <http://www.w3.org/ns/r2rml#termType>
+                              <http://www.w3.org/ns/r2rml#IRI>
+                    ] ;
+            <http://www.w3.org/ns/r2rml#predicateMap>
+                    [ <http://www.w3.org/ns/r2rml#constant>
+                              schema:containedInPlace ]
+          ] ;
+  <http://www.w3.org/ns/r2rml#subjectMap>
+          [ <http://www.w3.org/ns/r2rml#template>
+                    "http://mydata.example.org/source1-hospitality/{\"h_h_id\"}" ;
+            <http://www.w3.org/ns/r2rml#termType>
+                    <http://www.w3.org/ns/r2rml#IRI>
+          ]
+] .
+
+[ <http://www.w3.org/ns/r2rml#logicalTable>
+          [ <http://www.w3.org/ns/r2rml#tableName>
+                    "\"lenses\".\"source2\".\"hotels\"" ] ;
+  <http://www.w3.org/ns/r2rml#predicateObjectMap>
+          [ <http://www.w3.org/ns/r2rml#objectMap>
+                    [ <http://www.w3.org/ns/r2rml#template>
+                              "http://mydata.example.org/source1-municipalities/0{\"mun\"}" ;
+                      <http://www.w3.org/ns/r2rml#termType>
+                              <http://www.w3.org/ns/r2rml#IRI>
+                    ] ;
+            <http://www.w3.org/ns/r2rml#predicateMap>
+                    [ <http://www.w3.org/ns/r2rml#constant>
+                              schema:containedInPlace ]
+          ] ;
+  <http://www.w3.org/ns/r2rml#subjectMap>
+          [ <http://www.w3.org/ns/r2rml#template>
+                    "http://mydata.example.org/source2-hotels/{\"id\"}" ;
             <http://www.w3.org/ns/r2rml#termType>
                     <http://www.w3.org/ns/r2rml#IRI>
           ]
@@ -1012,78 +293,7 @@
           [ <http://www.w3.org/ns/r2rml#class>
                     voc:Municipality ;
             <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/municipality/{\"istat\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"rooms\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"name_de\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              rdf:langString ;
-                      <http://www.w3.org/ns/r2rml#language>
-                              "de" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:name ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/rooms/{\"r_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"rooms\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"name_en\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              rdf:langString ;
-                      <http://www.w3.org/ns/r2rml#language>
-                              "en" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:name ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/rooms/{\"r_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"accommodation\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              "C62" ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:unitCode ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/occupancy/accommodation/{\"id\"}" ;
+                    "http://mydata.example.org/source1-municipalities/{\"istat\"}" ;
             <http://www.w3.org/ns/r2rml#termType>
                     <http://www.w3.org/ns/r2rml#IRI>
           ]
@@ -1091,107 +301,18 @@
 
 [ <http://www.w3.org/ns/r2rml#logicalTable>
           [ <http://www.w3.org/ns/r2rml#sqlQuery>
-                    "SELECT * FROM \"lenses\".\"source2\".\"hotels\" WHERE \"htype\" = 2" ] ;
+                    "SELECT * FROM \"lenses\".\"source2\".\"hotels\" WHERE \"htype\" = 4" ] ;
   <http://www.w3.org/ns/r2rml#predicateObjectMap>
           [ <http://www.w3.org/ns/r2rml#objectMap>
                     [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:Hotel ] ;
+                              schema:Campground ] ;
             <http://www.w3.org/ns/r2rml#predicateMap>
                     [ <http://www.w3.org/ns/r2rml#constant>
                               rdf:type ]
           ] ;
   <http://www.w3.org/ns/r2rml#subjectMap>
           [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/hotels/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#sqlQuery>
-                    "SELECT * FROM \"lenses\".\"source1\".\"hospitality\" WHERE \"h_type\" = 'Youth'" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:Hostel ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              rdf:type ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/hospitality/{\"h_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"join_source1_hospitality_source1_municipalities\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#template>
-                              "http://destination.example.org/data/municipality/{\"p2_istat\"}" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#IRI>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:containedInPlace ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/hospitality/{\"p1_h_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"accommodation\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"guest_nb\"" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:maxValue ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/occupancy/accommodation/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"rooms\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"description_it\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              rdf:langString ;
-                      <http://www.w3.org/ns/r2rml#language>
-                              "it" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:description ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/rooms/{\"r_id\"}" ;
+                    "http://mydata.example.org/source2-hotels/{\"id\"}" ;
             <http://www.w3.org/ns/r2rml#termType>
                     <http://www.w3.org/ns/r2rml#IRI>
           ]
@@ -1200,392 +321,11 @@
 [ <http://www.w3.org/ns/r2rml#logicalTable>
           [ <http://www.w3.org/ns/r2rml#tableName>
                     "\"lenses\".\"source2\".\"hotels\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"long\"" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:longitude ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/geo/hotels/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"hotels\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"lat\"" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:latitude ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/geo/hotels/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#sqlQuery>
-                    "SELECT * FROM \"lenses\".\"source1\".\"rooms\" WHERE \"r_type\" = 'room'" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:Room ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              rdf:type ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/rooms/{\"r_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"accommodation\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#template>
-                              "http://destination.example.org/data/source2/hotels/{\"hotel\"}" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#IRI>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:containedInPlace ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/accommodation/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"municipalities\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#template>
-                              "http://destination.example.org/data/geo/municipality/{\"istat\"}" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#IRI>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              geo:defaultGeometry ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/municipality/{\"istat\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#sqlQuery>
-                    "SELECT * FROM \"lenses\".\"source1\".\"rooms\" WHERE \"r_type\" = 'pitch'" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:CampingPitch ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              rdf:type ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/rooms/{\"r_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"hotels\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"italian\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              rdf:langString ;
-                      <http://www.w3.org/ns/r2rml#language>
-                              "it" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:name ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/hotels/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"accommodation\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              1 ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              voc:numberOfUnits ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/accommodation/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"hospitality\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"email\"" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:email ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/hospitality/{\"h_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"rooms\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"name_it\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              rdf:langString ;
-                      <http://www.w3.org/ns/r2rml#language>
-                              "it" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:name ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/rooms/{\"r_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"municipalities\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"altitude\"" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:elevation ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/geo/municipality/{\"istat\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"hospitality\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#template>
-                              "http://destination.example.org/data/source1/geo/hospitality/{\"h_id\"}" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#IRI>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:geo ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/hospitality/{\"h_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"hospitality\"" ] ;
   <http://www.w3.org/ns/r2rml#subjectMap>
           [ <http://www.w3.org/ns/r2rml#class>
                     schema:LodgingBusiness ;
             <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/hospitality/{\"h_id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"hotels\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"alt\"" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:elevation ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/geo/hotels/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"accommodation\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"italian_description\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              rdf:langString ;
-                      <http://www.w3.org/ns/r2rml#language>
-                              "it" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:description ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/accommodation/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"municipalities\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"wkt\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              geo:wktLiteral ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              geo:asWKT ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/geo/municipality/{\"istat\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source2\".\"hotels\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"wkt\"" ;
-                      <http://www.w3.org/ns/r2rml#datatype>
-                              geo:wktLiteral ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              geo:asWKT ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source2/geo/hotels/{\"id\"}" ;
-            <http://www.w3.org/ns/r2rml#termType>
-                    <http://www.w3.org/ns/r2rml#IRI>
-          ]
-] .
-
-[ <http://www.w3.org/ns/r2rml#logicalTable>
-          [ <http://www.w3.org/ns/r2rml#tableName>
-                    "\"lenses\".\"source1\".\"hospitality\"" ] ;
-  <http://www.w3.org/ns/r2rml#predicateObjectMap>
-          [ <http://www.w3.org/ns/r2rml#objectMap>
-                    [ <http://www.w3.org/ns/r2rml#column>
-                              "\"latitude\"" ;
-                      <http://www.w3.org/ns/r2rml#termType>
-                              <http://www.w3.org/ns/r2rml#Literal>
-                    ] ;
-            <http://www.w3.org/ns/r2rml#predicateMap>
-                    [ <http://www.w3.org/ns/r2rml#constant>
-                              schema:latitude ]
-          ] ;
-  <http://www.w3.org/ns/r2rml#subjectMap>
-          [ <http://www.w3.org/ns/r2rml#template>
-                    "http://destination.example.org/data/source1/geo/hospitality/{\"h_id\"}" ;
+                    "http://mydata.example.org/source2-hotels/{\"id\"}" ;
             <http://www.w3.org/ns/r2rml#termType>
                     <http://www.w3.org/ns/r2rml#IRI>
           ]

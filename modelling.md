@@ -3,16 +3,16 @@
 
 ## Preparation
 
-1. Go to XXX, login with your user account.
+1. Go to https://ontobras-eu.ontopic.dev, login with your user account.
 2. Create a project `dest-USERNAME` by replacing `USERNAME` by your user name.
 3. Open the project
 4. Go to the `Settings` page
 5. Provide the credentials for connecting to the database
      - Database: `PostgreSQL`
-     - Host: `XXXXX`
+     - Host: `ontobras1.cw6ltdje1jrb.eu-west-3.rds.amazonaws.com`
      - Database name: `postgres`
-     - Username: `tuto`
-     - Password: `YYYYYY`
+     - Username: `ontobras`
+     - Password: `ontoptutorial`
 6. Save the credentials and go to the `Lenses` page. You see there, on the left, the list of database tables and views.
 
 
@@ -131,21 +131,42 @@ SELECT * WHERE {
  5. As we would to use the same municipality identifiers for the lodging businesses from the 2 sources, let's use the Istat code for in the IRI template of municipalities and not the internal one.
  6. Go to the mapping page of the lens `lenses.source1.municipalities`. Click on `C+` for creating a class mapping entry.
  7. Click on `Create IRI template`. By default Ontopic Studio generates a template using the first unique constraint (`m_id`). Replace the binding value `m_id` by `istat`. Create the template.
- 8. schema.org does have the class for municipalities so let's create one. In the class drop-down menu, click on `Create new class`. Insert `Municipality` as class name and select `schema:AdministrativeArea`. Click on `Create`. Save the mapping entry.
+ 8. schema.org does have the class for municipalities so let's create one. In the class drop-down menu, click on `Create new class`. Insert `Municipality` as class name and select `schema:AdministrativeArea` as parent. Click on `Create`. Save the mapping entry.
  9. Map the English name of the municipality.
  10. Snapshot the changes.
+
+
+### Prefix update
+
+ 1. Go to the `Dashboard` page. Click on `Manage project prefixes`.
+ 2. Change the value associated to `voc` to `http://tutorial.example.org/voc#`. Click on `Save` and reply `Yes` to the question. We now changed the IRI of `voc:Municipality`.
+ 3. Snapshot the changes.
 
 
 ## Linking lodging businesses to municipalities
 
 ### Source 1
 
-### Source 2
+For creating a mapping entry linking lodging businesses from source 1 to their municipality, we need to obtain their local identifier columns (respectively `h_id` and `istat`) in the same lens. The lenses `lenses.source1.hospitality` and `lenses.source1.municipalities` only contain one of the two. Therefore we need to create a join lens to obtain the two columns at the same time.
 
-### Query
- 1. Update the prefixes
- 2. Update the SPARQL endpoint and run the following query:
-  ```sparql
+ 1. Go the `Lenses` page. On the left, select the tables `source1.hospitality` and `source1.municipalities` and click on `Create join lens`. Insert the name `source1.hospitality-municipalities-join`. 
+ 2. For `source1.hospitality`, provide the prefix `h_` and for `source1.municipalities` the prefix `m_`. All the columns coming from the first table will prefixed by `h_` while the ones from the second table by `m_`.
+ 3. Add an equality between `h_m_id` and `m_m_id`. Click on `Create join lens`.
+ 4. Open `lenses.source1.hospitality-municipalities-join` and click on `0 mapping entries`.
+ 5. Click on `P+` to create a property mapping entry.
+ 6. Select `data:source1-hospitality/{h_id}` as template for the subject. For the binding of the placeholder `h_id` in the template, select the column `h_h_id` (it could not be pre-selected because there is no column `h_id` in this lens).
+ 7. Select the property `schema:containedInPlace`.
+ 8. Select `IRI/BNode` for the object, `data:source1-municipalities/{istat}` as template and the column `m_istat` as binding for the placeholder `istat`. Save the mapping entry.
+
+### Source 2
+ 
+ 1. Go the mapping page of the lens `lenses.source2.hotels`.
+ 2. Observe that the `mun` column  has an integer datatype. However in `lenses.source1.municipalities`, the `istat` column is a string and starts with the character `0`. So here we have to be careful in creating IRIs for the municipalities that match the ones of `lenses.source1.municipalities`.
+ 3. Click on `P+` on the right of `data:source2-hotels/{id}`. Select the property `schema:containedInPlace`.
+ 4. Select `IRI/BNode` for the object. Create a new IRI template `data:source1-municipalities/0{mun}` and select it. Save the mapping entry.
+ 5. Snapshot the changes.
+ 6. Update the SPARQL endpoint and run the following query:
+```sparql
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX schema: <http://schema.org/>
 PREFIX voc: <http://tutorial.example.org/voc#>
@@ -160,5 +181,42 @@ SELECT * WHERE {
   OPTIONAL {
     ?h geo:defaultGeometry / geo:asWKT ?geometry .
   }
-} 
- ```
+}
+```
+
+### Inverse property
+
+Let's enrich the ontology by defining `schema:containedInPlace` as inversed property of `schema:containsPlace`.
+
+ 1. Go to the `Ontology` page. In the `Properties` tab, select the property `schema:containedInPlace`. Since schema.org is not an OWL ontology, it does not classify its properties as data or object properties. Select `Object` as type for this property.
+ 2. A new button appears: `Inverse Property`. Click on it and select `schema:containsPlace` as inverse property. Click on `Save`.
+ 3. Go to the property `schema:containsPlace`. Declare it as an object property.
+ 4. Snapshot the changes.
+ 5. Try the following SPARQL query: 
+  ```sparql
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX schema: <http://schema.org/>
+PREFIX voc: <http://tutorial.example.org/voc#>
+
+SELECT * WHERE {
+  ?h a schema:Campground ; schema:name ?name  .
+  
+  ?municipality a voc:Municipality ; schema:name ?municipalityName ; schema:containsPlace ?h .
+
+  FILTER (lang(?name) = 'en' && lang(?municipalityName) = 'en')
+  
+  OPTIONAL {
+    ?h geo:defaultGeometry / geo:asWKT ?geometry .
+  }
+}
+```
+ 6. Notice it returns the same results as before, thanks to the Ontop inference capabilities.
+
+
+## Search
+
+  1. Go the `Search` page. You can see on the right all the mapping entries created.
+  2. On the left, select the class `schema:LodgingBusiness`. You now see only entries where the subject is instance of `schema:LodgingBusiness`.
+  3. On the `Templates` tab, select the template `data:source2-hotels/{id}`.  Results are further filtered and only mapping entries from `lenses.source2.hotels`.
+  4. Unselect the class `schema:LodgingBusiness` and observe that the mapping entries for the subclasses `schema:Hotel` etc. reappear.
+

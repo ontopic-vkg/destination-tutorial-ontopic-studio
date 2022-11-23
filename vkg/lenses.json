@@ -3,81 +3,10 @@
 		{
 			"name": [
 				"\"lenses\"",
-				"\"source2\"",
-				"\"accommodation\""
-			],
-			"otherNames": null,
-			"baseRelation": [
-				"\"source2\"",
-				"\"accommodation\""
-			],
-			"filterExpression": null,
-			"columns": {
-				"added": [],
-				"hidden": []
-			},
-			"uniqueConstraints": null,
-			"otherFunctionalDependencies": null,
-			"foreignKeys": null,
-			"nonNullConstraints": null,
-			"type": "BasicViewDefinition"
-		},
-		{
-			"name": [
-				"\"lenses\"",
-				"\"source2\"",
-				"\"hotels\""
-			],
-			"otherNames": null,
-			"baseRelation": [
-				"\"source2\"",
-				"\"hotels\""
-			],
-			"filterExpression": null,
-			"columns": {
-				"added": [
-					{
-						"name": "\"wkt\"",
-						"expression": "ST_ASTEXT(\"geom\")"
-					}
-				],
-				"hidden": []
-			},
-			"uniqueConstraints": null,
-			"otherFunctionalDependencies": null,
-			"foreignKeys": null,
-			"nonNullConstraints": null,
-			"type": "BasicViewDefinition"
-		},
-		{
-			"name": [
-				"\"lenses\"",
-				"\"source1\"",
-				"\"rooms\""
-			],
-			"otherNames": null,
-			"baseRelation": [
-				"\"source1\"",
-				"\"rooms\""
-			],
-			"filterExpression": null,
-			"columns": {
-				"added": [],
-				"hidden": []
-			},
-			"uniqueConstraints": null,
-			"otherFunctionalDependencies": null,
-			"foreignKeys": null,
-			"nonNullConstraints": null,
-			"type": "BasicViewDefinition"
-		},
-		{
-			"name": [
-				"\"lenses\"",
 				"\"source1\"",
 				"\"hospitality\""
 			],
-			"otherNames": null,
+			"otherNames": [],
 			"baseRelation": [
 				"\"source1\"",
 				"\"hospitality\""
@@ -86,15 +15,53 @@
 			"columns": {
 				"added": [
 					{
-						"name": "\"wkt\"",
+						"name": "\"geometrypoint\"",
 						"expression": "ST_ASTEXT(\"geometrypoint\")"
 					}
 				],
+				"hidden": [
+					"\"geometrypoint\""
+				]
+			},
+			"uniqueConstraints": {
+				"added": []
+			},
+			"otherFunctionalDependencies": {
+				"added": []
+			},
+			"foreignKeys": {
+				"added": []
+			},
+			"nonNullConstraints": {
+				"added": []
+			},
+			"type": "BasicViewDefinition"
+		},
+		{
+			"name": [
+				"\"lenses\"",
+				"\"source2\"",
+				"\"hotels\""
+			],
+			"otherNames": [],
+			"baseRelation": [
+				"\"source2\"",
+				"\"hotels\""
+			],
+			"filterExpression": null,
+			"columns": {
+				"added": [],
 				"hidden": []
 			},
-			"uniqueConstraints": null,
-			"otherFunctionalDependencies": null,
-			"foreignKeys": null,
+			"uniqueConstraints": {
+				"added": []
+			},
+			"otherFunctionalDependencies": {
+				"added": []
+			},
+			"foreignKeys": {
+				"added": []
+			},
 			"nonNullConstraints": null,
 			"type": "BasicViewDefinition"
 		},
@@ -104,31 +71,33 @@
 				"\"source1\"",
 				"\"municipalities\""
 			],
-			"otherNames": null,
+			"otherNames": [],
 			"baseRelation": [
 				"\"source1\"",
 				"\"municipalities\""
 			],
 			"filterExpression": null,
 			"columns": {
-				"added": [
-					{
-						"name": "\"wkt\"",
-						"expression": "ST_ASTEXT(\"geometrypoint\")"
-					}
-				],
+				"added": [],
 				"hidden": []
 			},
-			"uniqueConstraints": null,
-			"otherFunctionalDependencies": null,
-			"foreignKeys": null,
+			"uniqueConstraints": {
+				"added": []
+			},
+			"otherFunctionalDependencies": {
+				"added": []
+			},
+			"foreignKeys": {
+				"added": []
+			},
 			"nonNullConstraints": null,
 			"type": "BasicViewDefinition"
 		},
 		{
 			"name": [
 				"\"lenses\"",
-				"\"join_source1_hospitality_source1_municipalities\""
+				"\"source1\"",
+				"\"hospitality-municipalities-join\""
 			],
 			"otherNames": null,
 			"join": {
@@ -143,18 +112,24 @@
 					]
 				],
 				"columnPrefixes": [
-					"p1_",
-					"p2_"
+					"h_",
+					"m_"
 				]
 			},
-			"filterExpression": "\"p1_m_id\" = \"p2_m_id\"",
+			"filterExpression": "\"h_m_id\" = \"m_m_id\"",
 			"columns": {
 				"added": [],
 				"hidden": []
 			},
-			"uniqueConstraints": null,
-			"otherFunctionalDependencies": null,
-			"foreignKeys": null,
+			"uniqueConstraints": {
+				"added": []
+			},
+			"otherFunctionalDependencies": {
+				"added": []
+			},
+			"foreignKeys": {
+				"added": []
+			},
 			"nonNullConstraints": null,
 			"type": "JoinViewDefinition"
 		}

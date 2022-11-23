@@ -1,32 +1,29 @@
 @prefix schema: <http://schema.org/> .
 @prefix void:  <http://rdfs.org/ns/void#> .
-@prefix data:  <http://mydata.example.org/> .
+@prefix obda:  <https://w3id.org/obda/vocabulary#> .
+@prefix data:  <http://destination.example.org/data/> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix gml:   <http://www.opengis.net/ont/gml#> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix voc:   <http://tutorial.example.org/voc#> .
+@prefix voc:   <http://destination.example.org/ontology/dest#> .
 @prefix ns1:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix ssn:   <http://www.w3.org/ns/ssn/> .
 @prefix geo:   <http://www.opengis.net/ont/geosparql#> .
+@prefix cdt:   <http://w3id.org/lindt/custom_datatypes#> .
+@prefix sf:    <http://www.opengis.net/ont/sf#> .
 @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix terms: <http://purl.org/dc/terms/> .
+@prefix xml:   <http://www.w3.org/XML/1998/namespace> .
 @prefix bibo:  <http://purl.org/ontology/bibo/> .
 @prefix dcat:  <http://www.w3.org/ns/dcat#> .
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
-@prefix dc:    <http://purl.org/dc/elements/1.1/> .
-@prefix base:  <https://schema.org/version/latest/schemaorg-current-http.rdf#> .
+@prefix sosa:  <http://www.w3.org/ns/sosa/> .
 
 schema:Sculpture  a      rdfs:Class ;
         rdfs:comment     "A piece of sculpture." ;
         rdfs:label       "Sculpture" ;
         rdfs:subClassOf  schema:CreativeWork .
-
-geo:asGML  a                owl:DatatypeProperty ;
-        rdfs:comment        "\n      The GML serialization of a geometry\n    "@en ;
-        rdfs:domain         geo:Geometry ;
-        rdfs:label          "asGML"@en ;
-        rdfs:range          geo:gmlLiteral ;
-        rdfs:subPropertyOf  geo:hasSerialization .
 
 schema:contentRating  a  rdf:Property ;
         rdfs:comment  "Official rating of a piece of content&#x2014;for example,'MPAA PG-13'." ;
@@ -397,10 +394,6 @@ schema:suggestedMaxAge
         rdfs:comment  "Maximum recommended age in years for the audience or user." ;
         rdfs:label    "suggestedMaxAge" .
 
-dc:contributor  a     rdf:Property ;
-        rdfs:comment  "An entity responsible for making contributions to the resource."@en ;
-        rdfs:label    "Contributor"@en .
-
 schema:tocEntry  a          rdf:Property ;
         rdfs:comment        "Indicates a [[HyperTocEntry]] in a [[HyperToc]]." ;
         rdfs:label          "tocEntry" ;
@@ -476,12 +469,6 @@ schema:DiscussionForumPosting
         rdfs:comment     "A posting to a discussion forum." ;
         rdfs:label       "DiscussionForumPosting" ;
         rdfs:subClassOf  schema:SocialMediaPosting .
-
-geo:sfTouches  a      owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject spatially touches the \n      object SpatialObject.\n      DE-9IM: FT******* ^ F**T***** ^ F***T****\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "touches"@en ;
-        rdfs:range    geo:SpatialObject .
 
 schema:ticketToken  a  rdf:Property ;
         rdfs:comment  "Reference to an asset (e.g., Barcode, QR code image or PDF) usable for entrance." ;
@@ -721,12 +708,6 @@ schema:startTime  a   rdf:Property ;
         rdfs:comment  "The startTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to start. For actions that span a period of time, when the action was performed. e.g. John wrote a book from *January* to December. For media, including audio and video, it's the time offset of the start of a clip within a larger file.\\n\\nNote that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions." ;
         rdfs:label    "startTime" .
 
-geo:ehMeet  a         owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject spatially meets the \n      object SpatialObject. \n      DE-9IM: FT******* ^ F**T***** ^ F***T****\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "meet"@en ;
-        rdfs:range    geo:SpatialObject .
-
 schema:exampleOfWork  a  rdf:Property ;
         rdfs:comment  "A creative work that this work is an example/instance/realization/derivation of." ;
         rdfs:label    "exampleOfWork" .
@@ -918,7 +899,7 @@ schema:Muscle  a         rdfs:Class ;
         rdfs:label       "Muscle" ;
         rdfs:subClassOf  schema:AnatomicalStructure .
 
-schema:containedIn  a  rdf:Property ;
+schema:containedIn  a  owl:ObjectProperty ;
         rdfs:comment  "The basic containment relation between a place and one that contains it." ;
         rdfs:label    "containedIn" .
 
@@ -951,20 +932,9 @@ schema:processingTime
         rdfs:comment  "Estimated processing time for the service using this channel." ;
         rdfs:label    "processingTime" .
 
-geo:ehCoveredBy  a    owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject is spatially covered \n      by the object SpatialObject. DE-9IM: TFF*TFT**\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "coveredBy"@en ;
-        rdfs:range    geo:SpatialObject .
-
 schema:trainName  a   rdf:Property ;
         rdfs:comment  "The name of the train (e.g. The Orient Express)." ;
         rdfs:label    "trainName" .
-
-geo:Geometry  a          rdfs:Class ;
-        rdfs:comment     "\n      The class represents the top-level geometry type. This class is \n      equivalent to the UML class GM_Object defined in ISO 19107, and \n      it is superclass of all geometry types.\n    "@en ;
-        rdfs:label       "Geometry"@en ;
-        rdfs:subClassOf  geo:SpatialObject .
 
 schema:pagination  a  rdf:Property ;
         rdfs:comment  "Any description of pages that is not separated into pageStart and pageEnd; for example, \"1-6, 9, 55\" or \"10-12, 46-49\"." ;
@@ -1033,10 +1003,9 @@ schema:awards  a      rdf:Property ;
         rdfs:label    "awards" .
 
 schema:containedInPlace
-        a              owl:ObjectProperty ;
-        rdfs:comment   "The basic containment relation between a place and one that contains it." ;
-        rdfs:label     "containedInPlace" ;
-        owl:inverseOf  schema:containsPlace .
+        a             rdf:Property , owl:ObjectProperty ;
+        rdfs:comment  "The basic containment relation between a place and one that contains it." ;
+        rdfs:label    "containedInPlace" .
 
 schema:ratingCount  a  rdf:Property ;
         rdfs:comment  "The count of total number of ratings." ;
@@ -1343,12 +1312,6 @@ schema:LendAction  a     rdfs:Class ;
         rdfs:label       "LendAction" ;
         rdfs:subClassOf  schema:TransferAction .
 
-geo:rcc8eq  a         owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject spatially equals the \n      object SpatialObject. DE-9IM: TFFFTFFFT\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "equals"@en ;
-        rdfs:range    geo:SpatialObject .
-
 schema:TaxiStand  a      rdfs:Class ;
         rdfs:comment     "A taxi stand." ;
         rdfs:label       "TaxiStand" ;
@@ -1536,11 +1499,6 @@ schema:DigitalDocumentPermission
         rdfs:comment     "A permission for a particular person or group to access a particular file." ;
         rdfs:label       "DigitalDocumentPermission" ;
         rdfs:subClassOf  schema:Intangible .
-
-geo:Feature  a           rdfs:Class ;
-        rdfs:comment     "\n      This class represents the top-level feature type. This class is \n      equivalent to GFI_Feature defined in ISO 19156:2011, and it is \n      superclass of all feature types.\n    "@en ;
-        rdfs:label       "Feature"@en ;
-        rdfs:subClassOf  geo:SpatialObject .
 
 schema:Emergency  a      rdfs:Class ;
         rdfs:comment     "A specific branch of medical science that deals with the evaluation and initial treatment of medical conditions caused by trauma or sudden illness." ;
@@ -1768,18 +1726,6 @@ schema:code  a        rdf:Property ;
         rdfs:comment  "A medical code for the entity, taken from a controlled vocabulary or ontology such as ICD-9, DiseasesDB, MeSH, SNOMED-CT, RxNorm, etc." ;
         rdfs:label    "code" .
 
-geo:sfDisjoint  a     owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject is spatially disjoint \n      from the object SpatialObject. DE-9IM: FF*FF****\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "disjoint"@en ;
-        rdfs:range    geo:SpatialObject .
-
-geo:rcc8ntpp  a       owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject is spatially inside \n      the object SpatialObject. DE-9IM: TFFTFFTTT\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "non-tangential proper part"@en ;
-        rdfs:range    geo:SpatialObject .
-
 schema:InvestmentOrDeposit
         a                rdfs:Class ;
         rdfs:comment     "A type of financial product that typically requires the client to transfer funds to a financial service in return for potential beneficial financial return." ;
@@ -1969,16 +1915,6 @@ schema:ToyStore  a       rdfs:Class ;
         rdfs:comment     "A toy store." ;
         rdfs:label       "ToyStore" ;
         rdfs:subClassOf  schema:Store .
-
-dc:source  a          rdf:Property ;
-        rdfs:comment  "A related resource from which the described resource is derived."@en ;
-        rdfs:label    "Source"@en .
-
-geo:sfOverlaps  a     owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject spatially overlaps the \n      object SpatialObject. DE-9IM: T*T***T** \n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "overlaps"@en ;
-        rdfs:range    geo:SpatialObject .
 
 schema:encoding  a    rdf:Property ;
         rdfs:comment  "A media object that encodes this CreativeWork. This property is a synonym for associatedMedia." ;
@@ -2354,12 +2290,7 @@ schema:EducationalOccupationalProgram
         rdfs:label       "EducationalOccupationalProgram" ;
         rdfs:subClassOf  schema:Intangible .
 
-geo:asWKT  a                owl:DatatypeProperty ;
-        rdfs:comment        "\n      The WKT serialization of a geometry\n    "@en ;
-        rdfs:domain         geo:Geometry ;
-        rdfs:label          "asWKT"@en ;
-        rdfs:range          geo:wktLiteral ;
-        rdfs:subPropertyOf  geo:hasSerialization .
+geo:asWKT  a    rdf:Property .
 
 schema:cvdNumC19OFMechVentPats
         a             rdf:Property ;
@@ -2557,14 +2488,14 @@ schema:partOfOrder  a  rdf:Property ;
         rdfs:comment  "The overall order the items in this delivery were included in." ;
         rdfs:label    "partOfOrder" .
 
-schema:seeks  a       rdf:Property ;
-        rdfs:comment  "A pointer to products or services sought by the organization or person (demand)." ;
-        rdfs:label    "seeks" .
-
 schema:RadioSeries  a    rdfs:Class ;
         rdfs:comment     "CreativeWorkSeries dedicated to radio broadcast and associated online delivery." ;
         rdfs:label       "RadioSeries" ;
         rdfs:subClassOf  schema:CreativeWorkSeries .
+
+schema:seeks  a       rdf:Property ;
+        rdfs:comment  "A pointer to products or services sought by the organization or person (demand)." ;
+        rdfs:label    "seeks" .
 
 schema:geoEquals  a   rdf:Property ;
         rdfs:comment  "Represents spatial relations in which two geometries (or the places they represent) are topologically equal, as defined in [DE-9IM](https://en.wikipedia.org/wiki/DE-9IM). \"Two geometries are topologically equal if their interiors intersect and no part of the interior or boundary of one geometry intersects the exterior of the other\" (a symmetric relationship)" ;
@@ -2883,16 +2814,6 @@ schema:ConfirmAction  a  rdfs:Class ;
         rdfs:label       "ConfirmAction" ;
         rdfs:subClassOf  schema:InformAction .
 
-geo:ehDisjoint  a     owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject is spatially disjoint\n      from the object SpatialObject. DE-9IM: FF*FF****\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "disjoint"@en ;
-        rdfs:range    geo:SpatialObject .
-
-dc:creator  a         rdf:Property ;
-        rdfs:comment  "An entity primarily responsible for making the resource."@en ;
-        rdfs:label    "Creator"@en .
-
 schema:variantCover  a  rdf:Property ;
         rdfs:comment  "A description of the variant cover\n    \tfor the issue, if the issue is a variant printing. For example, \"Bryan Hitch\n    \tVariant Cover\" or \"2nd Printing Variant\"." ;
         rdfs:label    "variantCover" .
@@ -3080,12 +3001,6 @@ schema:dissolutionDate
         a             rdf:Property ;
         rdfs:comment  "The date that this organization was dissolved." ;
         rdfs:label    "dissolutionDate" .
-
-geo:spatialDimension  a  owl:DatatypeProperty ;
-        rdfs:comment  "\n      The number of measurements or axes needed to describe the spatial position of \n      this geometry in a coordinate system.\n    "@en ;
-        rdfs:domain   geo:Geometry ;
-        rdfs:label    "spatialDimension"@en ;
-        rdfs:range    xsd:integer .
 
 schema:performTime  a  rdf:Property ;
         rdfs:comment  "The length of time it takes to perform instructions or a direction (not including time to prepare the supplies), in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601)." ;
@@ -3398,8 +3313,6 @@ schema:deliveryStatus
         rdfs:comment  "New entry added as the package passes through each leg of its journey (from shipment to final delivery)." ;
         rdfs:label    "deliveryStatus" .
 
-terms:description  a  rdf:Property .
-
 schema:legislationConsolidates
         a             rdf:Property ;
         rdfs:comment  "Indicates another legislation taken into account in this consolidated legislation (which is usually the product of an editorial process that revises the legislation). This property should be used multiple times to refer to both the original version or the previous consolidated version, and to the legislations making the change." ;
@@ -3445,8 +3358,6 @@ schema:SizeSpecification
         rdfs:comment     "Size related properties of a product, typically a size code ([[name]]) and optionally a [[sizeSystem]], [[sizeGroup]], and product measurements ([[hasMeasurement]]). In addition, the intended audience can be defined through [[suggestedAge]], [[suggestedGender]], and suggested body measurements ([[suggestedMeasurement]])." ;
         rdfs:label       "SizeSpecification" ;
         rdfs:subClassOf  schema:QualitativeValue .
-
-terms:issued  a  rdf:Property .
 
 schema:inCodeSet  a         rdf:Property ;
         rdfs:comment        "A [[CategoryCodeSet]] that contains this category code." ;
@@ -3686,10 +3597,6 @@ schema:repeatCount  a  rdf:Property ;
         rdfs:comment  "Defines the number of times a recurring [[Event]] will take place" ;
         rdfs:label    "repeatCount" .
 
-dc:description  a     rdf:Property ;
-        rdfs:comment  "An account of the resource."@en ;
-        rdfs:label    "Description"@en .
-
 schema:exceptDate  a  rdf:Property ;
         rdfs:comment  "Defines a [[Date]] or [[DateTime]] during which a scheduled [[Event]] will not take place. The property allows exceptions to\n      a [[Schedule]] to be specified. If an exception is specified as a [[DateTime]] then only the event that would have started at that specific date and time\n      should be excluded from the schedule. If an exception is specified as a [[Date]] then any event that is scheduled for that 24 hour period should be\n      excluded from the schedule. This allows a whole day to be excluded from the schedule without having to itemise every scheduled event." ;
         rdfs:label    "exceptDate" .
@@ -3737,18 +3644,6 @@ schema:ContactPage  a    rdfs:Class ;
         rdfs:comment     "Web page type: Contact page." ;
         rdfs:label       "ContactPage" ;
         rdfs:subClassOf  schema:WebPage .
-
-geo:isSimple  a       owl:DatatypeProperty ;
-        rdfs:comment  "\n      (true) if this geometric object has no anomalous geometric \n      points, such as self intersection or self tangency.\n    "@en ;
-        rdfs:domain   geo:Geometry ;
-        rdfs:label    "isSimple"@en ;
-        rdfs:range    xsd:boolean .
-
-geo:dimension  a      owl:DatatypeProperty ;
-        rdfs:comment  "\n      The topological dimension of this geometric object, which \n      must be less than or equal to the coordinate dimension. \n      In non-homogeneous collections, this will return the largest \n      topological dimension of the contained objects.\n    "@en ;
-        rdfs:domain   geo:Geometry ;
-        rdfs:label    "dimension"@en ;
-        rdfs:range    xsd:integer .
 
 schema:reviewCount  a  rdf:Property ;
         rdfs:comment  "The count of total number of reviews." ;
@@ -3876,12 +3771,6 @@ schema:TrainTrip  a      rdfs:Class ;
         rdfs:label       "TrainTrip" ;
         rdfs:subClassOf  schema:Trip .
 
-geo:ehInside  a       owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject is spatially inside \n      the object SpatialObject. DE-9IM: TFF*FFT**\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "inside"@en ;
-        rdfs:range    geo:SpatialObject .
-
 schema:BroadcastService
         a                rdfs:Class ;
         rdfs:comment     "A delivery service through which content is provided via broadcast over the air or online." ;
@@ -3901,12 +3790,6 @@ schema:ImageObject  a    rdfs:Class ;
         rdfs:comment     "An image file." ;
         rdfs:label       "ImageObject" ;
         rdfs:subClassOf  schema:MediaObject .
-
-geo:sfCrosses  a      owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject spatially crosses the \n      object SpatialObject. DE-9IM: T*T******\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "crosses"@en ;
-        rdfs:range    geo:SpatialObject .
 
 schema:LegalService  a   rdfs:Class ;
         rdfs:comment     "A LegalService is a business that provides legally-oriented services, advice and representation, e.g. law firms.\\n\\nAs a [[LocalBusiness]] it can be described as a [[provider]] of one or more [[Service]]\\(s)." ;
@@ -3993,8 +3876,6 @@ schema:Grant  a          rdfs:Class ;
         rdfs:comment     "A grant, typically financial or otherwise quantifiable, of resources. Typically a [[funder]] sponsors some [[MonetaryAmount]] to an [[Organization]] or [[Person]],\n    sometimes not necessarily via a dedicated or long-lived [[Project]], resulting in one or more outputs, or [[fundedItem]]s. For financial sponsorship, indicate the [[funder]] of a [[MonetaryGrant]]. For non-financial support, indicate [[sponsor]] of [[Grant]]s of resources (e.g. office space).\n\nGrants support  activities directed towards some agreed collective goals, often but not always organized as [[Project]]s. Long-lived projects are sometimes sponsored by a variety of grants over time, but it is also common for a project to be associated with a single grant.\n\nThe amount of a [[Grant]] is represented using [[amount]] as a [[MonetaryAmount]].\n    " ;
         rdfs:label       "Grant" ;
         rdfs:subClassOf  schema:Intangible .
-
-terms:modified  a  rdf:Property .
 
 schema:warrantyScope  a  rdf:Property ;
         rdfs:comment  "The scope of the warranty promise." ;
@@ -4088,14 +3969,6 @@ schema:healthCondition
         a             rdf:Property ;
         rdfs:comment  "Specifying the health condition(s) of a patient, medical study, or other target audience." ;
         rdfs:label    "healthCondition" .
-
-geo:rcc8po  a         owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject spatially overlaps the \n      object SpatialObject. DE-9IM: TTTTTTTTT\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "partially overlapping"@en ;
-        rdfs:range    geo:SpatialObject .
-
-geo:gmlLiteral  a  rdfs:Datatype .
 
 schema:isPlanForApartment
         a             rdf:Property ;
@@ -4284,12 +4157,6 @@ schema:areaServed  a  rdf:Property ;
         rdfs:comment  "The geographic area where a service or offered item is provided." ;
         rdfs:label    "areaServed" .
 
-geo:rcc8dc  a         owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject is spatially disjoint\n      from the object SpatialObject. DE-9IM: FFTFFTTTT\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "disconnected"@en ;
-        rdfs:range    geo:SpatialObject .
-
 schema:serialNumber  a      rdf:Property ;
         rdfs:comment        "The serial number or any alphanumeric identifier of a particular product. When attached to an offer, it is a shortcut for the serial number of the product included in the offer." ;
         rdfs:label          "serialNumber" ;
@@ -4396,8 +4263,6 @@ schema:MedicalRiskCalculator
         rdfs:comment     "A complex mathematical calculation requiring an online calculator, used to assess prognosis. Note: use the url property of Thing to record any URLs for online calculators." ;
         rdfs:label       "MedicalRiskCalculator" ;
         rdfs:subClassOf  schema:MedicalRiskEstimator .
-
-geo:wktLiteral  a  rdfs:Datatype .
 
 schema:appliesToDeliveryMethod
         a             rdf:Property ;
@@ -4583,12 +4448,6 @@ schema:ItemPage  a       rdfs:Class ;
         rdfs:comment     "A page devoted to a single item, such as a particular product or hotel." ;
         rdfs:label       "ItemPage" ;
         rdfs:subClassOf  schema:WebPage .
-
-geo:sfContains  a     owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject spatially contains the \n      object SpatialObject. DE-9IM: T*****FF*\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "contains"@en ;
-        rdfs:range    geo:SpatialObject .
 
 schema:naics  a       rdf:Property ;
         rdfs:comment  "The North American Industry Classification System (NAICS) code for a particular organization or business person." ;
@@ -5712,12 +5571,6 @@ schema:priceRange  a  rdf:Property ;
         rdfs:comment  "The price range of the business, for example ```$$$```." ;
         rdfs:label    "priceRange" .
 
-geo:ehContains  a     owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject spatially contains the \n      object SpatialObject. DE-9IM: T*TFF*FF*\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "contains"@en ;
-        rdfs:range    geo:SpatialObject .
-
 schema:ShippingRateSettings
         a                rdfs:Class ;
         rdfs:comment     "A ShippingRateSettings represents re-usable pieces of shipping information. It is designed for publication on an URL that may be referenced via the [[shippingSettingsLink]] property of an [[OfferShippingDetails]]. Several occurrences can be published, distinguished and matched (i.e. identified/referenced) by their different values for [[shippingLabel]]." ;
@@ -5765,6 +5618,8 @@ schema:currentExchangeRate
         rdfs:comment  "The current price of a currency." ;
         rdfs:label    "currentExchangeRate" .
 
+voc:Municipality  a  rdfs:Class .
+
 schema:flightDistance
         a             rdf:Property ;
         rdfs:comment  "The distance of the flight." ;
@@ -5800,9 +5655,6 @@ schema:BedAndBreakfast
         rdfs:label       "BedAndBreakfast" ;
         rdfs:subClassOf  schema:LodgingBusiness .
 
-voc:Municipality  a      rdfs:Class ;
-        rdfs:subClassOf  schema:AdministrativeArea .
-
 schema:encodingFormat
         a             rdf:Property ;
         rdfs:comment  "Media type typically expressed using a MIME format (see [IANA site](http://www.iana.org/assignments/media-types/media-types.xhtml) and [MDN reference](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)) e.g. application/zip for a SoftwareApplication binary, audio/mpeg for .mp3 etc.).\n\nIn cases where a [[CreativeWork]] has several media type representations, [[encoding]] can be used to indicate each [[MediaObject]] alongside particular [[encodingFormat]] information.\n\nUnregistered or niche encoding and file formats can be indicated instead via the most appropriate URL, e.g. defining Web page or a Wikipedia/Wikidata entry." ;
@@ -5812,10 +5664,6 @@ schema:numberOfPreviousOwners
         a             rdf:Property ;
         rdfs:comment  "The number of owners of the vehicle, including the current one.\\n\\nTypical unit code(s): C62" ;
         rdfs:label    "numberOfPreviousOwners" .
-
-dc:date  a            rdf:Property ;
-        rdfs:comment  "A point or period of time associated with an event in the lifecycle of the resource."@en ;
-        rdfs:label    "Date"@en .
 
 schema:ArriveAction  a   rdfs:Class ;
         rdfs:comment     "The act of arriving at a place. An agent arrives at a destination from a fromLocation, optionally with participants." ;
@@ -6029,12 +5877,6 @@ schema:courseWorkload
         rdfs:label    "courseWorkload" .
 
 rdf:type  a     rdf:Property .
-
-geo:isEmpty  a        owl:DatatypeProperty ;
-        rdfs:comment  "\n      (true) if this geometric object is the empty Geometry. If \n      true, then this geometric object represents the empty point \n      set for the coordinate space.\n    "@en ;
-        rdfs:domain   geo:Geometry ;
-        rdfs:label    "isEmpty"@en ;
-        rdfs:range    xsd:boolean .
 
 schema:sizeSystem  a  rdf:Property ;
         rdfs:comment  "The size system used to identify a product's size. Typically either a standard (for example, \"GS1\" or \"ISO-EN13402\"), country code (for example \"US\" or \"JP\"), or a measuring system (for example \"Metric\" or \"Imperial\")." ;
@@ -6254,12 +6096,6 @@ schema:HealthPlanCostSharingSpecification
         rdfs:comment     "A description of costs to the patient under a given network or formulary." ;
         rdfs:label       "HealthPlanCostSharingSpecification" ;
         rdfs:subClassOf  schema:Intangible .
-
-geo:sfIntersects  a   owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject is not spatially disjoint \n      from the object SpatialObject.\n      DE-9IM: T******** ^ *T******* ^ ***T***** ^ ****T**** \n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "intersects"@en ;
-        rdfs:range    geo:SpatialObject .
 
 schema:GeospatialGeometry
         a                rdfs:Class ;
@@ -6499,12 +6335,6 @@ schema:offerCount  a  rdf:Property ;
         rdfs:comment  "The number of offers for the product." ;
         rdfs:label    "offerCount" .
 
-geo:hasGeometry  a    owl:ObjectProperty ;
-        rdfs:comment  "\n      A spatial representation for a given feature.\n    "@en ;
-        rdfs:domain   geo:Feature ;
-        rdfs:label    "hasGeometry"@en ;
-        rdfs:range    geo:Geometry .
-
 schema:box  a         rdf:Property ;
         rdfs:comment  "A box is the area enclosed by the rectangle formed by two points. The first point is the lower corner, the second point is the upper corner. A box is expressed as two points separated by a space character." ;
         rdfs:label    "box" .
@@ -6585,12 +6415,6 @@ schema:legislationIdentifier
         rdfs:label          "legislationIdentifier" ;
         rdfs:subPropertyOf  schema:identifier .
 
-geo:rcc8ntppi  a      owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject spatially contains the \n      object SpatialObject. DE-9IM: TTTFFTFFT\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "non-tangential proper part inverse"@en ;
-        rdfs:range    geo:SpatialObject .
-
 schema:printPage  a   rdf:Property ;
         rdfs:comment  "If this NewsArticle appears in print, this field indicates the name of the page on which the article is found. Please note that this field is intended for the exact page name (e.g. A5, B18)." ;
         rdfs:label    "printPage" .
@@ -6598,12 +6422,6 @@ schema:printPage  a   rdf:Property ;
 schema:byMonthDay  a  rdf:Property ;
         rdfs:comment  "Defines the day(s) of the month on which a recurring [[Event]] takes place. Specified as an [[Integer]] between 1-31." ;
         rdfs:label    "byMonthDay" .
-
-geo:ehOverlap  a      owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject spatially overlaps the \n      object SpatialObject. DE-9IM: T*T***T**\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "overlap"@en ;
-        rdfs:range    geo:SpatialObject .
 
 schema:seatRow  a     rdf:Property ;
         rdfs:comment  "The row location of the reserved seat (e.g., B)." ;
@@ -7065,12 +6883,6 @@ schema:accessibilityFeature
         rdfs:comment  "Content features of the resource, such as accessible media, alternatives and supported enhancements for accessibility ([WebSchemas wiki lists possible values](http://www.w3.org/wiki/WebSchemas/Accessibility))." ;
         rdfs:label    "accessibilityFeature" .
 
-geo:rcc8tppi  a       owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject spatially covers the \n      object SpatialObject. DE-9IM: TTTFTTFFT\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "tangential proper part inverse"@en ;
-        rdfs:range    geo:SpatialObject .
-
 schema:Electrician  a    rdfs:Class ;
         rdfs:comment     "An electrician." ;
         rdfs:label       "Electrician" ;
@@ -7273,6 +7085,8 @@ schema:proprietaryName
         rdfs:comment  "Proprietary name given to the diet plan, typically by its originator or creator." ;
         rdfs:label    "proprietaryName" .
 
+voc:numberOfUnits  a  rdf:Property .
+
 schema:epidemiology  a  rdf:Property ;
         rdfs:comment  "The characteristics of associated patients, such as age, gender, race etc." ;
         rdfs:label    "epidemiology" .
@@ -7416,13 +7230,6 @@ schema:ChooseAction  a   rdfs:Class ;
         rdfs:comment     "The act of expressing a preference from a set of options or a large or unbounded set of choices/options." ;
         rdfs:label       "ChooseAction" ;
         rdfs:subClassOf  schema:AssessAction .
-
-geo:coordinateDimension
-        a             owl:DatatypeProperty ;
-        rdfs:comment  "\n      The number of measurements or axes needed to describe the position of this\n      geometry in a coordinate system.\n    "@en ;
-        rdfs:domain   geo:Geometry ;
-        rdfs:label    "coordinateDimension"@en ;
-        rdfs:range    xsd:integer .
 
 schema:postalCodeRange
         a             rdf:Property ;
@@ -7601,9 +7408,10 @@ schema:OpinionNewsArticle
         rdfs:label       "OpinionNewsArticle" ;
         rdfs:subClassOf  schema:NewsArticle .
 
-schema:containsPlace  a  rdf:Property ;
-        rdfs:comment  "The basic containment relation between a place and another that it contains." ;
-        rdfs:label    "containsPlace" .
+schema:containsPlace  a  owl:ObjectProperty ;
+        rdfs:comment   "The basic containment relation between a place and another that it contains." ;
+        rdfs:label     "containsPlace" ;
+        owl:inverseOf  schema:containedInPlace .
 
 schema:fileFormat  a  rdf:Property ;
         rdfs:comment  "Media type, typically MIME format (see [IANA site](http://www.iana.org/assignments/media-types/media-types.xhtml)) of the content e.g. application/zip of a SoftwareApplication binary. In cases where a CreativeWork has several media type representations, 'encoding' can be used to indicate each MediaObject alongside particular fileFormat information. Unregistered or niche file formats can be indicated instead via the most appropriate URL, e.g. defining Web page or a Wikipedia entry." ;
@@ -7767,12 +7575,6 @@ schema:Podiatric  a      rdfs:Class ;
         rdfs:comment     "Podiatry is the care of the human foot, especially the diagnosis and treatment of foot disorders." ;
         rdfs:label       "Podiatric" ;
         rdfs:subClassOf  schema:MedicalBusiness .
-
-geo:rcc8tpp  a        owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject is spatially covered \n      by the object SpatialObject. DE-9IM: TFFTTFTTT\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "tangential proper part"@en ;
-        rdfs:range    geo:SpatialObject .
 
 schema:sender  a            rdf:Property ;
         rdfs:comment        "A sub property of participant. The participant who is at the sending end of the action." ;
@@ -8047,12 +7849,6 @@ schema:Oncologic  a      rdfs:Class ;
         rdfs:comment     "A specific branch of medical science that deals with benign and malignant tumors, including the study of their development, diagnosis, treatment and prevention." ;
         rdfs:label       "Oncologic" ;
         rdfs:subClassOf  schema:MedicalBusiness .
-
-geo:sfWithin  a       owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject is spatially within the \n      object SpatialObject. DE-9IM: T*F**F***\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "within"@en ;
-        rdfs:range    geo:SpatialObject .
 
 schema:Product  a        rdfs:Class ;
         rdfs:comment     "Any offered product or service. For example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online." ;
@@ -8515,12 +8311,6 @@ schema:programPrerequisites
         rdfs:comment  "Prerequisites for enrolling in the program." ;
         rdfs:label    "programPrerequisites" .
 
-geo:ehEquals  a       owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject spatially equals the \n      object SpatialObject. DE-9IM: TFFFTFFFT\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "equals"@en ;
-        rdfs:range    geo:SpatialObject .
-
 schema:position  a    rdf:Property ;
         rdfs:comment  "The position of an item in a series or sequence of items." ;
         rdfs:label    "position" .
@@ -8620,12 +8410,6 @@ schema:returnPolicyCategory
         rdfs:comment  "A returnPolicyCategory expresses at most one of several enumerated kinds of return." ;
         rdfs:label    "returnPolicyCategory" .
 
-geo:ehCovers  a       owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject spatially covers the \n      object SpatialObject. DE-9IM: T*TFT*FF*\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "covers"@en ;
-        rdfs:range    geo:SpatialObject .
-
 schema:vehicleModelDate
         a             rdf:Property ;
         rdfs:comment  "The release date of a vehicle model (often used to differentiate versions of the same make and model)." ;
@@ -8689,8 +8473,6 @@ schema:LakeBodyOfWater
 schema:employees  a   rdf:Property ;
         rdfs:comment  "People working for this organization." ;
         rdfs:label    "employees" .
-
-terms:title  a  rdf:Property .
 
 schema:partOfSeries  a      rdf:Property ;
         rdfs:comment        "The series to which this episode or season belongs." ;
@@ -8950,12 +8732,7 @@ schema:WearableSizeSystemEnumeration
         rdfs:label       "WearableSizeSystemEnumeration" ;
         rdfs:subClassOf  schema:SizeSystemEnumeration .
 
-geo:defaultGeometry  a      owl:ObjectProperty ;
-        rdfs:comment        "\n      The default geometry to be used in spatial calculations.\n      It is Usually the most detailed geometry.\n    "@en ;
-        rdfs:domain         geo:Feature ;
-        rdfs:label          "defaultGeometry"@en ;
-        rdfs:range          geo:Geometry ;
-        rdfs:subPropertyOf  geo:hasGeometry .
+geo:defaultGeometry  a  rdf:Property .
 
 schema:MedicalEnumeration
         a                rdfs:Class ;
@@ -9074,8 +8851,6 @@ schema:numberOfAxles  a  rdf:Property ;
 schema:embedUrl  a    rdf:Property ;
         rdfs:comment  "A URL pointing to a player for a specific video. In general, this is the information in the ```src``` element of an ```embed``` tag and should not be the same as the content of the ```loc``` tag." ;
         rdfs:label    "embedUrl" .
-
-terms:publisher  a  rdf:Property .
 
 schema:permissions  a  rdf:Property ;
         rdfs:comment  "Permission(s) required to run the app (for example, a mobile app may require full internet access or may run only on wifi)." ;
@@ -9708,10 +9483,6 @@ schema:shippingLabel  a  rdf:Property ;
 schema:competitor  a  rdf:Property ;
         rdfs:comment  "A competitor in a sports event." ;
         rdfs:label    "competitor" .
-
-geo:SpatialObject  a  rdfs:Class ;
-        rdfs:comment  "\n      The class spatial-object represents everything that can have \n      a spatial representation. It is superclass of feature and geometry.\n    "@en ;
-        rdfs:label    "SpatialObject"@en .
 
 schema:increasesRiskOf
         a             rdf:Property ;
@@ -11098,12 +10869,6 @@ schema:Blog  a           rdfs:Class ;
         rdfs:label       "Blog" ;
         rdfs:subClassOf  schema:CreativeWork .
 
-geo:sfEquals  a       owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject spatially equals the \n      object SpatialObject. DE-9IM: TFFFTFFFT\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "equals"@en ;
-        rdfs:range    geo:SpatialObject .
-
 schema:addressRegion  a  rdf:Property ;
         rdfs:comment  "The region in which the locality is, and which is in the country. For example, California or another appropriate first-level [Administrative division](https://en.wikipedia.org/wiki/List_of_administrative_divisions_by_country) " ;
         rdfs:label    "addressRegion" .
@@ -11309,12 +11074,6 @@ schema:Researcher  a     rdfs:Class ;
         rdfs:label       "Researcher" ;
         rdfs:subClassOf  schema:Audience .
 
-geo:rcc8ec  a         owl:ObjectProperty ;
-        rdfs:comment  "\n      Exists if the subject SpatialObject spatially meets the \n      object SpatialObject. DE-9IM: FFTFTTTTT\n    "@en ;
-        rdfs:domain   geo:SpatialObject ;
-        rdfs:label    "externally connected"@en ;
-        rdfs:range    geo:SpatialObject .
-
 schema:marginOfError  a  rdf:Property ;
         rdfs:comment  "A marginOfError for an [[Observation]]." ;
         rdfs:label    "marginOfError" .
@@ -11352,8 +11111,3 @@ schema:winner  a            rdf:Property ;
 schema:datePosted  a  rdf:Property ;
         rdfs:comment  "Publication date of an online listing." ;
         rdfs:label    "datePosted" .
-
-geo:hasSerialization  a  owl:DatatypeProperty ;
-        rdfs:comment  "\n      Connects a geometry object with its text-based serialization.\n    "@en ;
-        rdfs:domain   geo:Geometry ;
-        rdfs:label    "has serialization"@en .
