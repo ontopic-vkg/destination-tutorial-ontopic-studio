@@ -1,5 +1,7 @@
 # Destination tutorial for Ontopic Studio
 
+This tutorial is an extract of [the destination tutorial](https://github.com/ontopic-vkg/destination-tutorial), which has been designed for Ontop alone.
+
 
 ## Clone this repository
 
@@ -39,7 +41,7 @@ The table `source1.hospitality` contains the ID _(h_id)_, name _(en ,it ,de)_, t
 | EFF0FACBA54C11D1 AD760020AFF92740 |	Residence Tuberis |	Residence Tuberis |	Residence Tuberis |	+39 0474 678488 |	info@tubris.com |	HotelPension |	46.9191 |	11.9547 |	865.0 |	3stars |	POINT Z(11.9547 46.9191 865) |	6A5FF36917FA48D2 B1996B76C7AA8BC6 |
 | 5F74DCC404AAA52B 318A12507A1F27F7 |	Camping  Gisser Vitha Hotels |	Camping  Gisser Vitha Hotels |	Camping  Gisser Vitha Hotels |	+39 0474 569605 |	reception@hotelgisser.it |	Camping	| 46.807976 |	11.812105 |	778.0 |	3stars |	POINT Z(11.812105 46.807976 778) |	1E84922B82234EE6 82A341531E1D1925 |
 
-The column _kind_ is populated with the following values: _Hotel, Hostel, Campground, Bed and Breakfast_.
+The column _kind_ is populated with the following values: _Hotel, Hostel, Camping, BedBreakfast_.
 
 The column _h_id_ is the primary key.
 
@@ -100,12 +102,10 @@ The column _id_ is the primary key.
 
 ## Mapping
 
-In this tutorial, the ontology and the SPARQL queries are already provided. We will focus on the mapping. Our goal is to reproduce the following diagrams.
-
-For tables in the schemas `source1` and `source2`:
+In this tutorial, the ontology is already provided. We will focus on the mapping. Our goal is to reproduce the following diagram.
 
 <img src="diagrams/lodging.png" width="800"/>
 
-See [the dedicated page](modelling.md) for specifying the ontology, the lenses and the mapping entries.
+See [the dedicated page](modelling.md) for loading the ontology and specifying the lenses and the mapping entries.
 
 
