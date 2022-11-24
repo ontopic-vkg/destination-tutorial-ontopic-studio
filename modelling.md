@@ -3,11 +3,11 @@
 
 ## Preparation
 
-1. Go to https://ontobras-eu.ontopic.dev, login with your user account.
+1. Go to https://ontobras-eu.ontopic.dev (Frankfurt, Germany) or https://ontobras-br.ontopic.dev (São Paulo, Brazil), login with your user account.
 2. Create a project `dest-USERNAME` by replacing `USERNAME` by your user name.
 3. Open the project
 4. Go to the `Settings` page
-5. Provide the credentials for connecting to the database
+5. Provide the credentials for connecting to the database (Paris, France)
      - Database: `PostgreSQL`
      - Host: `ontobras1.cw6ltdje1jrb.eu-west-3.rds.amazonaws.com`
      - Database name: `postgres`
