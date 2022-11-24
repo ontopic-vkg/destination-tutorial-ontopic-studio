@@ -1,0 +1,64 @@
+title="OntoBRAS SPARQL Portal"
+
+[[tabGroups]]
+
+name="Example Queries"
+
+[[tabGroups.tabs]]
+
+name="Campground Example Query 1"
+query="""
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX schema: <http://schema.org/>
+
+SELECT * WHERE {
+?h a schema:Campground ; schema:name ?name .
+ FILTER (lang(?name) = 'en')
+
+ OPTIONAL {
+   ?h geo:defaultGeometry / geo:asWKT ?geometry .
+ }
+}
+"""
+
+[[tabGroups.tabs]]
+
+name="Campground Example Query 2"
+query="""
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX schema: <http://schema.org/>
+PREFIX voc: <http://tutorial.example.org/voc#>
+
+SELECT * WHERE {
+  ?h a schema:Campground ; schema:name ?name ; schema:containedInPlace ?municipality .
+  
+  ?municipality a voc:Municipality ; schema:name ?municipalityName .
+
+  FILTER (lang(?name) = 'en' && lang(?municipalityName) = 'en')
+  
+  OPTIONAL {
+    ?h geo:defaultGeometry / geo:asWKT ?geometry .
+  }
+}
+"""
+
+[[tabGroups.tabs]]
+
+name="Campground Example Query 3"
+query="""
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX schema: <http://schema.org/>
+PREFIX voc: <http://tutorial.example.org/voc#>
+
+SELECT * WHERE {
+?h a schema:Campground ; schema:name ?name  .
+
+?municipality a voc:Municipality ; schema:name ?municipalityName ; schema:containsPlace ?h .
+
+FILTER (lang(?name) = 'en' && lang(?municipalityName) = 'en')
+
+OPTIONAL {
+  ?h geo:defaultGeometry / geo:asWKT ?geometry .
+}
+}
+"""
