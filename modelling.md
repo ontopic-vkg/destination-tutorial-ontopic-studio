@@ -18,8 +18,9 @@
 
 ## Ontology
  1. Go to the `Ontology` page
- 2. Import the file `schema.owl` in the `ontologies` directory
- 3. Import the file `geosparql.owl` in the `ontologies` directory
+ 2. Download and unzip [the archive containing the ontology files](https://github.com/ontopic-vkg/destination-tutorial-ontopic-studio/raw/main/ontologies/ontologies.zip) (available in the `ontologies` directory).
+ 2. Import the file `schema.owl`
+ 3. Import the file `geosparql.owl`
 
 
 ## Lodging businesses in source 1
