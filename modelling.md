@@ -3,11 +3,11 @@
 
 ## Preparation
 
-1. Go to https://ontobras-eu.ontopic.dev, login with your user account.
+1. Go to https://ontobras-eu.ontopic.dev (Frankfurt, Germany) or https://ontobras-br.ontopic.dev (São Paulo, Brazil), login with your user account.
 2. Create a project `dest-USERNAME` by replacing `USERNAME` by your user name.
 3. Open the project
 4. Go to the `Settings` page
-5. Provide the credentials for connecting to the database
+5. Provide the credentials for connecting to the database (Paris, France)
      - Database: `PostgreSQL`
      - Host: `ontobras1.cw6ltdje1jrb.eu-west-3.rds.amazonaws.com`
      - Database name: `postgres`
@@ -18,8 +18,9 @@
 
 ## Ontology
  1. Go to the `Ontology` page
- 2. Import the file `schema.owl` in the `ontologies` directory
- 3. Import the file `geosparql.owl` in the `ontologies` directory
+ 2. Download and unzip [the archive containing the ontology files](https://github.com/ontopic-vkg/destination-tutorial-ontopic-studio/raw/main/ontologies/ontologies.zip) (available in the `ontologies` directory).
+ 2. Import the file `schema.owl`
+ 3. Import the file `geosparql.owl`
 
 
 ## Lodging businesses in source 1
