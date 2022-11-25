@@ -1,5 +1,8 @@
 # Modelling
 
+In this tutorial, the ontology is already provided. We will focus on the mapping and the lenses. Our goal is to reproduce a fragment of the following diagram (the rest will be given as an exercice).
+
+<img src="diagrams/lodging.png" width="800"/>
 
 ## Preparation
 

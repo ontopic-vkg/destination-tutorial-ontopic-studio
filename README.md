@@ -100,12 +100,11 @@ The column _acco_type_ is populated with magic numbers:
 The column _id_ is the primary key.
 
 
-## Mapping
+## Practical sessions
 
-In this tutorial, the ontology is already provided. We will focus on the mapping. Our goal is to reproduce the following diagram.
+1. [Part 1: modelling](modelling.md) (Benjamin Cogrel)
+2. [Part 2: deployment as a SPARQL endpoint](deployment/deployment.md) (Davide Lanti)
 
-<img src="diagrams/lodging.png" width="800"/>
 
-See [the dedicated page](modelling.md) for loading the ontology and specifying the lenses and the mapping entries.
 
 
