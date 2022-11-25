@@ -87,7 +87,7 @@ The first four lines specify the connection parameters to the database. The last
 ```shell
 deployment/$ ./ontop endpoint -t ../vkg/ontology.ttl \
                               -m  ../vkg/mapping.ttl \
-                              -p connection/connection.properties
+                              -p connection/connection.properties \
                               -v ../vkg/lenses.json \
                               --portal=connection/predefined-queries.toml
 ```
