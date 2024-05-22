@@ -6,17 +6,10 @@ In this tutorial, the ontology is already provided. We will focus on the mapping
 
 ## Preparation
 
-1. Go to https://ontobras-eu.ontopic.dev (Frankfurt, Germany) or https://ontobras-br.ontopic.dev (São Paulo, Brazil), login with your user account.
-2. Create a project `dest-USERNAME` by replacing `USERNAME` by your user name.
+1. Go to your instance of Ontopic Studio.
+2. Create a project `dest-USERNAME` by replacing `USERNAME` by your user name and using the sample DB.
 3. Open the project
-4. Go to the `Settings` page
-5. Provide the credentials for connecting to the database (Paris, France)
-     - Database: `PostgreSQL`
-     - Host: `ontobras1.cw6ltdje1jrb.eu-west-3.rds.amazonaws.com`
-     - Database name: `postgres`
-     - Username: `ontobras`
-     - Password: `ontoptutorial`
-6. Save the credentials and go to the `Lenses` page. You see there, on the left, the list of database tables and views.
+4. Go to the `Lenses` page. You see there, on the left, the list of database tables and views.
 
 
 ## Ontology
